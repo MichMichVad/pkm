@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+if [ $# -ne 1 ]; then
+    echo "Err: dpd"
+    exit 1
+fi
+
+s=$(xrandr | grep " connected" | awk '{print $1}')
+
+if [ -z "$s" ]; then
+    echo "S not found"
+    exit 1
+fi
+
+xrandr --output $s --brightness $1

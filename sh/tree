@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+if [ "$#" -eq 0 ]; then
+    echo "Err: input arg"
+    exit 1 
+fi
+
+z="$1"
+
+if [[ "$z" =~ ^-[a-z]$ ]]; then
+    v="${z:1}"
+    n=$(( ( $(printf "%d" "'$v") - $(printf "%d" "'a") ) + 1 ))
+    h=$((n % 24))
+    t=$(date +%H)
+    if [ "$h" -lt "$t" ]; then
+        r=$((24 - t + h))
+    else
+        r=$((h - t))
+    fi
+    p=$((RANDOM % 1001))
+    s=$((r * 3600 + p))
+    if [ "$s" -eq 0 ]; then
+        echo "Err: 0"
+        exit 1
+    fi
+    cppl $s
+else
+    echo "Err: wrong format"
+    exit 1
+fi
+
+bap

@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+if [ $# -ne 1 ]; then
+    echo "Err: cppl"
+else
+    dpd 0
+    sleep 0.5
+    cpp key Super_L
+    xset dpms force off
+    sleep $1
+    cpp key Super_L
+    dpd 1
+fi
